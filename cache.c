@@ -2,8 +2,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
-#include<stdlib.h>
-#include<stdbool.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 // struct to represent a value and a unit (ex. for RAM, 4G)
 struct size{
@@ -20,7 +20,6 @@ void placeInCache(int start, int end, int tag, int * cache, int mapType, int set
 	if(mapType == 2 || mapType == 3){
 		// formula from Geeks4Geeks "Generating
 		// Random Numbers in a range in C"
-		//num = (rand()% (upper-lower + 1)) + lower
 		cacheLine = (rand()% (end-start+1))+start;
 	}
 	cache[cacheLine] = tag;
@@ -105,7 +104,6 @@ double unitToBytes(char unit[]){
 	else if((strcasecmp(unit, "b") == 0)){
 		return 0;
 	}
-	//TO DO: add more units
 }
 
 // Gets what power of 2 a number is(ex. 64 -> 2^6 -> returns 6)
@@ -134,7 +132,7 @@ int* addressFormat(int addrLen, int cacheLen, int blockLen, int mapping, int k){
 }
 
 int main(){
-	//get RAM size from user and calculate address length
+	// Get RAM size from user and calculate address length
 	struct size ramSize;
 	printf("Enter a RAM unit: ");
 	scanf("%s", ramSize.unit);
@@ -143,8 +141,8 @@ int main(){
 	int addrLen;
 	addrLen = bytePower(ramSize);
 	
-	//get cache size from user and calculate to what power of 2 the
-	//cache is in bytes
+	// Get cache size from user and calculate to what power of 2 the
+	// cache is in bytes
 	struct size cacheSize;
 	printf("Enter a cache unit: ");
 	scanf("%s", cacheSize.unit);
@@ -153,7 +151,7 @@ int main(){
 	int cachePower;
 	cachePower = bytePower(cacheSize);
 	
-	//get block size from user and calculate w
+	// Get block size from user and calculate w
 	struct size blockSize;
 	printf("Enter a block unit: ");
 	scanf("%s", blockSize.unit);
@@ -235,7 +233,7 @@ int main(){
 		}
 	}
 	// If mapping type is set associative, check for cache hit or miss.
-	// If cache miss, find an empty line within the set to store the 		// tag of the address.
+	// If cache miss, find an empty line within the set to store the tag of the address.
 	// If no lines are empty, replace a random cache line in the 
 	// proper set with the tag of the address.
 	if(mapType == 3){
